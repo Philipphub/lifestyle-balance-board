@@ -1,24 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lifestyle Balance Board - Frontend
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app), featuring professional API integration and comprehensive testing.
+
+## Environment Setup
+
+### Required Environment Variables
+
+Create a `.env.local` file in the frontend directory:
+
+```bash
+# Backend API URL
+NEXT_PUBLIC_API_BASE_URL=https://lifestyle-balance-board.onrender.com
+```
+
+For local development, use:
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3001
+```
+
+### Installation
+
+```bash
+npm install
+```
 
 ## Getting Started
 
-First, run the development server:
+### Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3002](http://localhost:3002) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Testing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [Vitest](https://vitest.dev/) for testing with comprehensive test coverage:
+
+```bash
+# Run tests in watch mode
+npm run test
+
+# Run tests once
+npm run test:run
+
+# Run tests with UI
+npm run test:ui
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+### Build
+
+```bash
+npm run build
+npm start
+```
+
+## Architecture
+
+### API Service Layer
+
+The application uses a centralized API service located at `src/services/api.ts` for all backend communication:
+
+```typescript
+import { ApiService } from '@/services/api'
+
+// Test connection to backend
+const result = await ApiService.testConnection()
+
+// Get API info
+const apiInfo = await ApiService.getApiInfo()
+
+// Health check
+const health = await ApiService.getHealthCheck()
+```
+
+### Components
+
+- `ApiTestComponent`: Reusable component for testing backend connectivity
+- Located in `src/components/` with comprehensive test coverage
+
+### Testing Strategy
+
+This project follows **Test-Driven Development (TDD)** principles:
+
+1. **Unit Tests**: All API service functions have comprehensive test coverage
+2. **Component Tests**: React components are tested with React Testing Library
+3. **Integration Tests**: Frontend-backend communication is thoroughly tested
+
+#### Test Structure
+
+```
+src/
+├── services/
+│   ├── api.ts
+│   └── __tests__/
+│       └── api.test.ts
+├── components/
+│   ├── ApiTestComponent.tsx
+│   └── __tests__/
+│       └── ApiTestComponent.test.tsx
+└── __tests__/
+    └── setup.ts
+```
+
+#### TDD Workflow
+
+1. Write failing tests first
+2. Implement minimal code to pass tests
+3. Refactor while keeping tests green
+4. Ensure comprehensive coverage
+
+### Environment Configuration
+
+- `NEXT_PUBLIC_API_BASE_URL`: Backend API base URL
+- Environment variables follow Next.js conventions with `NEXT_PUBLIC_` prefix for client-side access
+
+## Contributing
+
+When contributing to this project:
+
+1. Follow TDD principles - write tests first
+2. Ensure all tests pass before submitting
+3. Use the established API service for backend communication
+4. Follow TypeScript best practices
+5. Update documentation as needed
 
 ## Learn More
 
