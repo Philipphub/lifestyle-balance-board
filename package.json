@@ -14,7 +14,7 @@
     "build": "npm run build:frontend && npm run build:backend",
     "build:frontend": "cd frontend && npm run build",
     "build:backend": "cd backend && npm run build",
-    "test": "cd frontend && npm test && cd ../backend && npm test"
+    "test": "cd frontend && npm run test:run && cd ../backend && npm test"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
