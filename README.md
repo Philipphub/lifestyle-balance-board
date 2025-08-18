@@ -27,7 +27,8 @@ Backend API will be running at http://localhost:3001
 - **Framework**: Express.js
 - **Language**: TypeScript
 - **Security**: Helmet, CORS
-- **Testing**: Jest + Supertest
+- **Testing**: Vitest + Supertest
+- **Database**: PostgreSQL
 
 ## 🏗️ Project Structure
 
@@ -76,8 +77,9 @@ npm run lint          # ESLint
 
 # Backend specific (from /backend)
 cd backend
-npm test              # Run Jest tests
-npm run test:watch    # Watch mode
+npm run test          # Watch mode with Vitest
+npm run test:run      # Single run
+npm run test:coverage # Coverage report
 ```
 
 ## 🔌 API Integration
@@ -96,13 +98,15 @@ The frontend communicates with the backend API through the ApiService located at
 - Run tests: `cd frontend && npm test`
 
 ### Backend Testing
-- Framework: Jest with Supertest
+- Framework: Vitest with Supertest
 - API endpoint testing
-- Run tests: `cd backend && npm test`
+- Run tests: `cd backend && npm run test`
 
 ## 🚢 Deployment
 
-The application is configured for deployment on Vercel (frontend). The backend can be deployed to any Node.js hosting service.
+- **Frontend**: Deployed on Vercel with automatic deployments from main branch
+- **Backend**: Deployed on Render with automatic deployments
+- **Database**: PostgreSQL hosted on Render
 
 ## 🔧 Configuration
 
@@ -113,13 +117,15 @@ Create `.env` files in both frontend and backend directories as needed:
 #### Backend (.env)
 ```env
 PORT=3001
+DATABASE_URL=postgresql://user:password@host:port/database
 # Add other backend environment variables
 ```
 
 #### Frontend (.env.local)
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:3001
-# Add other frontend environment variables
+NEXT_PUBLIC_API_URL=http://localhost:3001  # Development
+# For production, set to your Render backend URL
+# NEXT_PUBLIC_API_URL=https://your-backend.onrender.com
 ```
 
 ## 📝 License

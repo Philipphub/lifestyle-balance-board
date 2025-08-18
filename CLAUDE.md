@@ -12,8 +12,12 @@ Lifestyle Balance Board is a full-stack application for tracking personal lifest
 
 -   **Frontend**: Next.js 15.4.6 with TypeScript, React 19, TailwindCSS 3.4
 -   **Backend**: Express.js with TypeScript, running on port 3001
--   **Testing**: Vitest for frontend, Jest for backend
--   **Deployment**: Configured for Vercel (frontend)
+-   **Database**: PostgreSQL (deployed on Render)
+-   **Testing**: Vitest for both frontend and backend
+-   **Deployment**: 
+    -   Frontend: Vercel
+    -   Backend: Render
+    -   Database: Render PostgreSQL
 
 ### Project Structure
 
@@ -61,8 +65,9 @@ npm run test:coverage
 
 # Backend testing (from backend directory)
 cd backend
-npm test           # Run Jest tests
-npm run test:watch # Watch mode
+npm run test        # Watch mode with Vitest
+npm run test:run    # Single run
+npm run test:coverage
 ```
 
 ### Linting
@@ -87,10 +92,19 @@ cd frontend && npm run lint
 -   Health check endpoint at `/api/health`
 -   TypeScript compilation outputs to `/dist`
 -   Environment variables via dotenv
+-   Testing setup with Vitest and Supertest
+-   Deployed on Render with automatic deploys
+
+### Database
+
+-   PostgreSQL hosted on Render
+-   Connection via DATABASE_URL environment variable
+-   Migrations and schema management (to be implemented)
 
 ### API Integration
 
 -   Frontend expects backend at http://localhost:3001 (development)
+-   Production backend URL configured via environment variables
 -   CORS enabled on backend for cross-origin requests
 -   ApiTestComponent available for testing connectivity
 
