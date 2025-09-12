@@ -1,12 +1,12 @@
-import { Router } from 'express';
+import { Router } from 'express'
 
-export const healthRouter = Router();
+export const healthRouter = Router()
 
 healthRouter.get('/', (req, res) => {
   res.json({
     status: 'OK',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: process.env.NODE_ENV || 'development'
-  });
-});
+    environment: process.env.NODE_ENV || 'development',
+  })
+})
